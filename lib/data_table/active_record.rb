@@ -91,6 +91,12 @@ module DataTable
             _split_where_condition query, field, options
           elsif options[:date]
             _date_where_condition query, field.first
+					elsif options[:equal]
+						if query.is_a? Integer
+							["#{field.first} = ?", "#{query}"]
+						else
+							["#{field.first} = ?", "#{query}"]
+						end						
           else
             _where_conditions(query, field, "AND")
           end
